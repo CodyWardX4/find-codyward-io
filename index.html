@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org" lang="en">
+<head>
+<!--TITLE-->
+    <title>Find a Designer</title>
+
+<!--FAVICON -->
+    <link rel="shortcut icon" type="image/png" href="assets/img/favicon.png"/>
+
+<!--META TAGS-->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+
+<!--FONTS-->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:100,400">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+
+<!--STYLES-->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+</head>
+<body ng-app="myApp" class="ng-cloak">
+<!--HEADER-->
+	<header class="header box">
+		<img src="assets/img/header.png">
+	</header>
+
+<!--WRAPPER-->
+	<div class="wrapper" ng-controller="resultsController">
+
+<!--FILTERS-->
+		<section class="filter-box box">
+			<input class="filter-search-box box" type="text" ng-model="resultsFilter.name" placeholder="Name">
+			<input class="filter-search-box box" type="text" ng-model="resultsFilter.specialty" placeholder="Specialty">
+			<input class="filter-search-box box" type="text" ng-model="resultsFilter.state" placeholder="State">
+			<input class="filter-search-box box" type="text" ng-model="resultsFilter.zip" placeholder="ZIP Code">
+		</section>
+
+<!--RESULTS CONTAINER-->
+		<section class="results-container">
+			<h2 class="results-heading">Results</h2>
+
+<!--RESULTS-->
+			<div ng-repeat="x in results | filter:resultsFilter">
+				<div class="results-box">
+					<img src="{{ x.profile }}">
+					<div class="returned-results">
+						<div class="results-content">
+							<div class="results-box-name">
+								<!-- <h1 ng-model="fullName">{{ x.first + ' ' + x.last }}</h1> -->
+								<h1 ng-model="fullName">{{ x.name }}</h1>
+							</div>
+							<div class="results-box-info">
+								<p>State: <span class="label">{{ x.state }}</span></p>
+								<p>ZIP Code: <span class="label">{{ x.zip }}</span></p>
+								<p>Specialty: <span class="label">{{ x.specialty }}</span></p>
+							</div>
+							<div class="results-box-contact">
+								<a target="_blank" href="{{ x.dribbbleLink }}"><i class="social-icon fa fa-dribbble"></i><span class="social-link"> {{ x.dribbbleShort }}</span></a>
+								<a target="_blank" href="{{ x.behanceLink }}"><i class="social-icon fa fa-behance"></i><span class="social-link"> {{ x.behanceShort }}</span></a>
+								<a target="_blank" href="{{ x.twitterLink }}"><i class="social-icon fa fa-twitter"></i><span class="social-link"> {{ x.twitterShort }}</span></a>
+								<a target="_blank" href="{{ 'mailto:' + x.email }}"><i class="social-icon fa fa-envelope-o"></i><span class="social-link"> {{ x.email }}</span></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+
+<!--FOOTER-->
+	<footer class="footer box">
+		<p>&copy; 2017 Cody Ward. All Rights Reserved.</p>
+	</footer>
+
+<!--SCRIPT TAGS-->
+    <script src="assets/js/jquery-1.12.4.min.js"></script>
+    <script src="assets/js/angular.min.js"></script>
+    <script src="assets/js/app.js"></script>
+
+<!--GOOGLE ANALYTICS-->
+	<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		  ga('create', 'UA-79989474-1', 'auto');
+		  ga('send', 'pageview');
+	</script>
+</body>
+</html>
